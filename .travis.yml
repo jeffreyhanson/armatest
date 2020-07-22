@@ -1,0 +1,49 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: r
+
+sudo: required
+
+dist: xenial
+
+warnings_are_errors: true
+
+branches:
+  only:
+  - master
+
+r:
+  - release
+  - devel
+
+r_build_args: --no-build-vignettes
+
+os:
+  - linux
+  - osx
+
+env:
+  global:
+    - _R_CHECK_FORCE_SUGGESTS_=FALSE
+    - _R_CHECK_DONTTEST_EXAMPLES_=FALSE
+    - _R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_=FALSE
+
+    before_install:
+  - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
+  - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then mkdir -p ~/.R; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CXX14=g++-8" >> ~/.R/Makevars; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CXX=g++-8" >> ~/.R/Makevars; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CC=gcc-8" >> ~/.R/Makevars; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "FC=gfortran-8" >> ~/.R/Makevars; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CXX11FLAGS += -flto" >> ~/.R/Makevars; fi;
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CPPFLAGS += -flto" >> ~/.R/Makevars; fi;
+
+install:
+  - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
+  - R -e "install.packages(c('covr', 'rmarkdown', 'testthat'))"
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
