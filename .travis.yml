@@ -8,13 +8,8 @@ dist: xenial
 
 warnings_are_errors: true
 
-branches:
-  only:
-  - master
-
 r:
   - release
-  - devel
 
 r_build_args: --no-build-vignettes
 
