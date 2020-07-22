@@ -1,7 +1,7 @@
 Package: armatest
 Type: Package
 Version: 0.0.1
-Title: Test
+Title: armatest
 Description: Test RcppArmadillo
 Authors@R: c(person(c('Jeffrey', 'O'), 'Hanson',
                email='jeffrey.hanson@uqconnect.edu.au', role = c('aut', 'cre')))
