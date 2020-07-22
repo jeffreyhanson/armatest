@@ -23,6 +23,8 @@ before_install:
 install:
   - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
   - R -e "install.packages(c('rmarkdown', 'testthat'))"
+  - mkdir -p ~/.R
+  - touch ~/.R/Makevars
   - echo "CXX11FLAGS += -flto" >> ~/.R/Makevars
   - echo "CPPFLAGS += -flto" >> ~/.R/Makevars
 
