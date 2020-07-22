@@ -19,13 +19,20 @@ os:
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
+  - sudo apt-get --yes --force-yes update -qq; fi;
+  - sudo apt-get install -y; fi;
+  - sudo apt-get install build-essential software-properties-common gcc-snapshot g++-8 gcc-8 gfortran-8; fi;
+  - mkdir -p ~/.R; fi;
+  - echo "CXX14=g++-8" >> ~/.R/Makevars; fi;
+  - echo "CXX=g++-8" >> ~/.R/Makevars; fi;
+  - echo "CC=gcc-8" >> ~/.R/Makevars; fi;
+  - echo "FC=gfortran-8" >> ~/.R/Makevars; fi;
 
 install:
   - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
-  - R -e "install.packages(c('covr', 'rmarkdown', 'testthat'))"
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then mkdir -p ~/.R; fi;
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CXX11FLAGS += -flto" >> ~/.R/Makevars; fi;
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then echo "CPPFLAGS += -flto" >> ~/.R/Makevars; fi;
+  - R -e "install.packages(c('rmarkdown', 'testthat'))"
+  - echo "CXX11FLAGS += -flto" >> ~/.R/Makevars; fi;
+  - echo "CPPFLAGS += -flto" >> ~/.R/Makevars; fi;
 
 notifications:
   email:
