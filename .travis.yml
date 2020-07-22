@@ -16,13 +16,7 @@ r_build_args: --no-build-vignettes
 os:
   - linux
 
-env:
-  global:
-    - _R_CHECK_FORCE_SUGGESTS_=FALSE
-    - _R_CHECK_DONTTEST_EXAMPLES_=FALSE
-    - _R_CHECK_XREFS_MIND_SUSPECT_ANCHORS_=FALSE
-
-    before_install:
+before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then mkdir -p ~/.R; fi;
