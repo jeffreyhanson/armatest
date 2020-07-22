@@ -4,7 +4,7 @@ language: r
 
 sudo: required
 
-dist: xenial
+dist: bionic
 
 warnings_are_errors: true
 
@@ -19,14 +19,6 @@ os:
 before_install:
   - echo "TRAVIS_OS_NAME = $TRAVIS_OS_NAME"
   - echo "options(repos = c(CRAN='http://cran.rstudio.com'))" > ~/.Rprofile
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install -y
-  - sudo apt-get install build-essential software-properties-common gcc-snapshot g++-8 gcc-8 gfortran-8
-  - mkdir -p ~/.R
-  - echo "CXX14=g++-8" >> ~/.R/Makevars
-  - echo "CXX=g++-8" >> ~/.R/Makevars
-  - echo "CC=gcc-8" >> ~/.R/Makevars
-  - echo "FC=gfortran-8" >> ~/.R/Makevars
 
 install:
   - R -e "install.packages('remotes'); suppressWarnings(remotes::install_deps(dependencies = TRUE))"
