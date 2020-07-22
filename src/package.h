@@ -1,4 +1,8 @@
 #pragma once
+
+// _Pragma("GCC diagnostic push")
+// _Pragma("GCC diagnostic ignored \"-Wodr\"")
+
 #ifndef PACKAGE
 #define PACKAGE
 
