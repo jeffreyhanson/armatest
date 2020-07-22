@@ -12,3 +12,6 @@ test_function()
 \description{
 This is a test function
 }
+\examples{
+stop("deliberate error to display check log files")
+}

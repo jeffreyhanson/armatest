@@ -28,9 +28,6 @@ install:
   - echo "CXX11FLAGS += -flto" >> ~/.R/Makevars
   - echo "CPPFLAGS += -flto" >> ~/.R/Makevars
 
-after_script:
-  for name in $(find "${RCHECK_DIR}" -type f -name "*out");do echo ">>> Filename: ${name} <<<";cat ${name};done
-
 notifications:
   email:
     on_success: change
