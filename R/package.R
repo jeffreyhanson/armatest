@@ -5,8 +5,6 @@ NULL
 #'
 #' This is a test function
 #'
-#' @param x
-#'
 #' @return \code{1}.
 #'
 #' @export
