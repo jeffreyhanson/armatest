@@ -6,9 +6,6 @@
 \usage{
 test_function()
 }
-\arguments{
-\item{x}{}
-}
 \value{
 \code{1}.
 }
