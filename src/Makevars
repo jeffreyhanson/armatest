@@ -1,0 +1,5 @@
+ifeq "$(CXX)" "g++"
+PKG_LIBS = `"${R_HOME}/bin/Rscript" -e "Rcpp::LdFlags()"` -w -fcompare-debug-second
+else
+PKG_LIBS = `"${R_HOME}/bin/Rscript" -e "Rcpp::LdFlags()"`
+endif
