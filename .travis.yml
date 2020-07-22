@@ -15,7 +15,6 @@ r_build_args: --no-build-vignettes
 
 os:
   - linux
-  - osx
 
 env:
   global:
